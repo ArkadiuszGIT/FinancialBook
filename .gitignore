@@ -1,5 +1,7 @@
 bin
 obj
 plan
-FinancialBook.*
+FinancialBook.cbp
+FinancialBook.depend
+FinancialBook.layout
 *.xml
