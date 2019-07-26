@@ -30,23 +30,23 @@ string SupportMethods::getNumber(string text, int charPosition)
 
 string SupportMethods::loadLine()
 {
-    string entry = "";
-    getline(cin, entry);
-    return entry;
+    string input = "";
+    getline(cin, input);
+    return input;
 }
 
 char SupportMethods::loadChar()
 {
-    string entry = "";
+    string input = "";
     char character  = {0};
 
     while (true)
     {
-        getline(cin, entry);
+        getline(cin, input);
 
-        if (entry.length() == 1)
+        if (input.length() == 1)
         {
-            character = entry[0];
+            character = input[0];
             break;
         }
         cout << "This is not a single character. Enter again." << endl;
@@ -66,15 +66,15 @@ string SupportMethods::changeFirstLetterToUpperAndNextLettersToLower(string text
 
 int SupportMethods::loadInteger()
 {
-    string entry = "";
+    string input = "";
     int number = 0;
 
     while (true)
     {
-        getline(cin, entry);
+        getline(cin, input);
 
-        stringstream myStream(entry);
-        if (myStream >> entry)
+        stringstream myStream(input);
+        if (myStream >> input)
             break;
         cout << "This is not a number. Enter again. " << endl;
     }
