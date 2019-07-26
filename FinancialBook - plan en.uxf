@@ -209,7 +209,7 @@ _+loadInteger():static int_
     </coordinates>
     <panel_attributes>XmlFile
 --
-#FILE_NAME:const string
+#XML_FILE_NAME:const string
 --
 +TextFile():
 
