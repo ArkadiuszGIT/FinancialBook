@@ -454,11 +454,11 @@ m2=0...n</panel_attributes>
     </coordinates>
     <panel_attributes>Finance
 --
+date:string
 userId:int 
-login:string
-password:string
-size:int
-date:int
+amount:int
+description:string
+
 </panel_attributes>
     <additional_attributes/>
   </element>

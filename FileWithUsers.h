@@ -3,8 +3,6 @@
 
 #include <iostream>
 #include <vector>
-#include <fstream>
-#include <windows.h>
 
 #include "User.h"
 #include "SupportMethods.h"
