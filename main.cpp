@@ -12,17 +12,20 @@ int main()
 
     while (true)
     {
-        if (financialBook.czyUzytkownikJestZalogowany() == false)
+        if (financialBook.checkIfUserIsLoged() == false)
         {
             choice = financialBook.chooseOptionFromMainMenu();
 
             switch (choice)
             {
             case '1':
-                financialBook.rejestracjaUzytkownika();
+                financialBook.userRegistration();
                 break;
             case '2':
-                financialBook.logowanieUzytkownika();
+                financialBook.userLoggingIn();
+                break;
+            case '3':
+                financialBook.showAllUsers();
                 break;
             case '9':
                 exit(0);
@@ -35,7 +38,7 @@ int main()
         }
         else
         {
-            choice = financialBook.wybierzOpcjeZMenuUzytkownika();
+            choice = financialBook.chooseOptionFromUserMenu();
 
             switch (choice)
             {
@@ -55,10 +58,10 @@ int main()
                 //financialBook.showBalanceFromTheSelectedPeriod();
                 break;
             case '6':
-                //financialBook.changePasswordOfLoggedUser();
+                financialBook.changePasswordOfLoggedUser();
                 break;
             case '7':
-                //financialBook.userLoggingOut();
+                financialBook.userLoggingOut();
                 break;
             }
         }

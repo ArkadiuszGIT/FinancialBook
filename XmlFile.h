@@ -10,10 +10,8 @@ class XmlFile
 {
 protected:
     const string XML_FILE_NAME;
-    //bool czyPlikJestPusty();
 
 public:
-
     XmlFile(string xmlFileName) : XML_FILE_NAME(xmlFileName) {};
 };
 

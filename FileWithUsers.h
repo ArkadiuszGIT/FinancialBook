@@ -9,6 +9,7 @@
 #include "User.h"
 #include "SupportMethods.h"
 #include "XmlFile.h"
+#include "Markup.h"
 
 using namespace std;
 
@@ -19,7 +20,7 @@ public:
     FileWithUsers(string fileName) : XmlFile(fileName){};
     void addUserToFile(User user);
     void addAllUsersToFile(vector <User> &users);
-    vector <User> loadUsersFromFIle();
+    vector <User> loadUsersFromFile();
 
 };
 

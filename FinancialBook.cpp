@@ -17,44 +17,44 @@ char FinancialBook::chooseOptionFromMainMenu()
     return choice;
 }
 
-char KsiazkaAdresowa::chooseOptionFromUserMenu()
+char FinancialBook::chooseOptionFromUserMenu()
 {
     userManager.chooseOptionFromUserMenu();
 }
 
-void KsiazkaAdresowa::userRegistration()
+void FinancialBook::userRegistration()
 {
     userManager.userRegistration();
 }
 
-int KsiazkaAdresowa::logowanieUzytkownika()
+int FinancialBook::userLoggingIn()
 {
     userManager.userLoggingIn();
-    userManager.checkIfUserIsLoged();
+    userManager.checkIfUserIsLogged();
     //if (userManager.czyUzytkownikJestZalogowany())
     //{
     //    adresatMenedzer = new AdresatMenedzer(NAZWA_PLIKU_Z_ADRESATAMI, userManager.pobierzIdZalogowanegoUzytkownika());
     //}
 }
 
-int KsiazkaAdresowa::userLoggingOut()
+int FinancialBook::userLoggingOut()
 {
     userManager.userLoggingOut();
    // delete adresatMenedzer;
     //adresatMenedzer = NULL;
 }
 
-void KsiazkaAdresowa::changePasswordOfLoggedUser()
+void FinancialBook::changePasswordOfLoggedUser()
 {
     userManager.changePasswordOfLoggedUser();
 }
 
-void KsiazkaAdresowa::showAllUsers()
+void FinancialBook::showAllUsers()
 {
     userManager.showAllUsers();
 }
 
-bool KsiazkaAdresowa::checkIfUserIsLoged()
+bool FinancialBook::checkIfUserIsLoged()
 {
-    userManager.checkIfUserIsLoged();
+    userManager.checkIfUserIsLogged();
 }

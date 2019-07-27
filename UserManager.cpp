@@ -66,6 +66,7 @@ void UserManager::showAllUsers()
         cout << users[i].getLogin() << endl;
         cout << users[i].getPassword() << endl;
     }
+    system("pause");
 }
 
 int UserManager::userLoggingIn()
@@ -88,7 +89,7 @@ int UserManager::userLoggingIn()
 
                 if (itr -> getPassword() == password)
                 {
-                    idOfLogedUser = itr -> getId();
+                    idOfLoggedUser = itr -> getId();
                     cout << endl << "You've logged in successfully." << endl << endl;
                     system("pause");
                     return 0;
@@ -107,8 +108,8 @@ int UserManager::userLoggingIn()
 
 int UserManager::userLoggingOut()
 {
-    idOfLogedUser = 0;
-    return idOfLogedUser;
+    idOfLoggedUser = 0;
+    return idOfLoggedUser;
 }
 
 void UserManager::changePasswordOfLoggedUser()
@@ -119,27 +120,27 @@ void UserManager::changePasswordOfLoggedUser()
 
     for (vector <User>::iterator itr = users.begin(); itr != users.end(); itr++)
     {
-        if (itr -> getId() == idOfLogedUser)
+        if (itr -> getId() == idOfLoggedUser)
         {
             itr -> setPassword(newPassword);
-            //fileWithUsers.zapiszWszystkichUzytkownikowDoPliku(users);
+            fileWithUsers.addAllUsersToFile(users);
         }
     }
     cout << "Password has been changed." << endl << endl;
     system("pause");
 }
 
-bool UserManager::checkIfUserIsLoged()
+bool UserManager::checkIfUserIsLogged()
 {
-    if (idOfLogedUser > 0)
+    if (idOfLoggedUser > 0)
         return true;
     else
         return false;
 }
 
-int UserManager::getidOfLogedUser()
+int UserManager::getIdOfLoggedUser()
 {
-    return idOfLogedUser;
+    return idOfLoggedUser;
 }
 
 char UserManager::chooseOptionFromUserMenu()

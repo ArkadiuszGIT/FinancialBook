@@ -13,7 +13,7 @@ using namespace std;
 
 class UserManager
 {
-    int idOfLogedUser;
+    int idOfLoggedUser;
     vector <User> users;
     FileWithUsers fileWithUsers;
 
@@ -23,16 +23,15 @@ class UserManager
 
 public:
     UserManager(string nameOfFileWithUsers) : fileWithUsers(nameOfFileWithUsers){
-        idOfLogedUser = 0;
+        idOfLoggedUser = 0;
         users = fileWithUsers.loadUsersFromFile();
     };
     void userRegistration();
     int userLoggingIn();
-    bool checkIfUserIsLoged();
+    bool checkIfUserIsLogged();
     int userLoggingOut();
     void changePasswordOfLoggedUser();
     void showAllUsers();
-    void loadUsersFromFile();
     int getIdOfLoggedUser();
     char chooseOptionFromUserMenu();
 };

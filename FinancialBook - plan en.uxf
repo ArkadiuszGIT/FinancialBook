@@ -52,7 +52,7 @@ fontsize=10
     </coordinates>
     <panel_attributes>UserManager
 --
--idOfLogedUser:Integer
+-idOfLoggedUser:Integer
 -users: vector &lt;User&gt;
 -fileWithUsers:FileWithUsers
 --
