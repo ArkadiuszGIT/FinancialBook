@@ -5,7 +5,6 @@
 #include <vector>
 
 #include "User.h"
-#include "SupportMethods.h"
 #include "XmlFile.h"
 #include "Markup.h"
 
