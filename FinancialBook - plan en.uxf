@@ -102,6 +102,10 @@ fontsize=10
     <panel_attributes>SupportMethods
 --
 --
+_+conversionFromDoubleToString():static string_
+_+coversionFromStringToDouble():static double_
+_+conversionFromIntToString():static string_
+_+coversionFromStringToInt():static int_
 _+conversionFromIntToString():static string_
 _+coversionFromStringToInt():static int_
 _+getNumber():static string_
@@ -457,7 +461,7 @@ m2=0...n</panel_attributes>
 stringDate:string
 intDate:int
 userId:int 
-amount:float
+amount:double
 description:string
 
 </panel_attributes>

@@ -43,27 +43,18 @@ Income FinancialManager::setDataOfTodayIncome();
 {
     Income income;
 
-    string imie, nazwisko, numerTelefonu, email, adres;
+    string date, amount, description;
+    double amountDouble;
 
-    adresat.ustawId((plikZAdresatami.pobierzIdOstatniegoAdresata()+1));
-    adresat.ustawIdUzytkownika(ID_ZALOGOWANEGO_UZYTKOWNIKA);
+    income.setUserId(ID_OF_LOGGED_USER);
+    date = SupportMethods::getTodaysDate;
 
-    cout << "Podaj imie: ";
-    imie = MetodyPomocnicze::wczytajLinie();
-    imie = MetodyPomocnicze::zamienPierwszaLitereNaDuzaAPozostaleNaMale(imie);
+    cout << "Give the amount of income: ";
+    amount = SupportMethods::wczytajLinie();
+    amountDouble = SupportMethods::conversionFromStringToDouble(amount);
 
-    cout << "Podaj nazwisko: ";
-    nazwisko = MetodyPomocnicze::wczytajLinie();
-    nazwisko = MetodyPomocnicze::zamienPierwszaLitereNaDuzaAPozostaleNaMale(nazwisko);
-
-    cout << "Podaj numer telefonu: ";
-    numerTelefonu = MetodyPomocnicze::wczytajLinie();
-
-    cout << "Podaj email: ";
-    email = MetodyPomocnicze::wczytajLinie();
-
-    cout << "Podaj adres: ";
-    adres = MetodyPomocnicze::wczytajLinie();
+    cout << "Write the description: ";
+    description = MetodyPomocnicze::wczytajLinie();
 
     adresat.ustawImie(imie);
     adresat.ustawNazwisko(nazwisko);

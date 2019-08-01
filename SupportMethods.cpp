@@ -8,13 +8,37 @@ string SupportMethods::conversionFromIntToString(int number)
     return str;
 }
 
-int SupportMethods::coversionFromStringTofloat(string number)
+int SupportMethods::conversionFromStringToInt(string number)
 {
-    float numberInt;
+    int numberInt;
     istringstream iss(number);
     iss >> numberInt;
-
     return numberInt;
+}
+
+double SupportMethods::conversionFromStringToDouble(string number)
+{
+    for(int i = 0; i <= number.length()-1; i++)
+    {
+        if(number[i] == ',')
+            number[i] = '.';
+        if(number[i] == ' ')
+            number.replace(i,1,"");
+    }
+    double numberDouble;
+    istringstream iss(number);
+    iss >> numberDouble;
+
+    return numberDouble;
+}
+
+string SupportMethods::conversionFromDoubleToString(double number)
+{
+    ostringstream ss;
+    ss.precision(15);
+    ss << number;
+    string str = ss.str();
+    return str;
 }
 
 string SupportMethods::getNumber(string text, int charPosition)
@@ -79,4 +103,20 @@ int SupportMethods::loadInteger()
         cout << "This is not a number. Enter again. " << endl;
     }
     return number;
+}
+
+string SupportMethods::getTodaysDate()
+{
+    string date;
+    SYSTEMTIME st;
+    GetSystemTime(&st);
+    string year = conversionFromIntToString(st.wYear);
+    string month = conversionFromIntToString(st.wMonth);
+    if (month.length() == 1)
+        month = '0' + month;
+    string day = conversionFromIntToString(st.wDay);
+    if (day.length() == 1)
+        day = '0' + day;
+    date = year + '-' + month + '-' + day ;
+    return date;
 }
