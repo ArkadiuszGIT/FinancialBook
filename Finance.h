@@ -8,27 +8,31 @@ using namespace std;
 class Finance
 {
 protected:
-    string date;
+    string stringDate;
+    int intDate;
     int userId;
-    int amount;
+    double amount;
     string description;
 
 public:
-    Finance(string date = "", int userId = 0, int amount = 0, string description = "")
+    Finance(string date = "", int intDate = 0, int userId = 0, double amount = 0, string description = "")
     {
-        this -> date = date;
+        this -> stringDate = stringDate;
+        this -> intDate = intDate;
         this -> userId = userId;
         this -> amount = amount;
         this -> description = description;
     }
-    void setDate(string newDate);
+    void setStringDate(string newStringDate);
+    void setIntDate(int newIntDate);
     void setUserId(int newUserId);
-    void setAmount(int newAmount);
+    void setAmount(double newAmount);
     void setDescription(string newDescription);
 
-    string getDate();
+    string getStringDate();
+    int getIntDate();
     int getUserId();
-    int getAmount();
+    double getAmount();
     string getDescription();
 
 };

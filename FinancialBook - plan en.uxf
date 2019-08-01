@@ -149,7 +149,7 @@ _+loadInteger():static int_
     </coordinates>
     <panel_attributes>FinancialManager
 --
--ID_OF_LOGED_USER:int
+-ID_OF_LOGGED_USER:int
 -incomes:vector &lt;Income&gt;
 -expenses:vector &lt;Expense&gt;
 -fileWithIncomes:FileWithIncomes
@@ -454,9 +454,10 @@ m2=0...n</panel_attributes>
     </coordinates>
     <panel_attributes>Finance
 --
-date:string
+stringDate:string
+intDate:int
 userId:int 
-amount:int
+amount:float
 description:string
 
 </panel_attributes>

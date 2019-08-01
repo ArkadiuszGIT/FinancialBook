@@ -8,9 +8,9 @@ string SupportMethods::conversionFromIntToString(int number)
     return str;
 }
 
-int SupportMethods::coversionFromStringToInt(string number)
+int SupportMethods::coversionFromStringTofloat(string number)
 {
-    int numberInt;
+    float numberInt;
     istringstream iss(number);
     iss >> numberInt;
 

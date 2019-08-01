@@ -8,7 +8,7 @@ int main()
 {
     char choice;
 
-    FinancialBook financialBook("Users.xml");
+    FinancialBook financialBook("Users.xml", "Incomes.xml", "Expenses.xml");
 
     while (true)
     {

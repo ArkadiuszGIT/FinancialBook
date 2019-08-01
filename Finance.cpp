@@ -2,16 +2,20 @@
 
 using namespace std;
 
-void Finance::setDate(string newDate)
+void Finance::setStringDate(string newStringDate)
 {
-    date = newDate;
+    stringDate = newStringDate;
+}
+void Finance::setStringDate(int newIntDate)
+{
+    intDate = newIntDate;
 }
 void Finance::setUserId(int newUserId)
 {
     if (newUserId >= 0)
         userId = newUserId;
 }
-void Finance::setAmount(int newAmount)
+void Finance::setAmount(double newAmount)
 {
     amount = newAmount;
 }
@@ -20,15 +24,19 @@ void Finance::setDescription(string newDescription)
     description = newDescription;
 }
 
-string Finance::getDate()
+string Finance::getStringDate()
 {
-    return date;
+    return stringDate;
+}
+int Finance::getIntDate()
+{
+    return intDate;
 }
 int Finance::getUserId()
 {
     return userId;
 }
-int Finance::getAmount()
+double Finance::getAmount()
 {
     return amount;
 }

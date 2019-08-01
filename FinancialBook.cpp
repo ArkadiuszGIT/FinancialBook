@@ -30,18 +30,17 @@ void FinancialBook::userRegistration()
 int FinancialBook::userLoggingIn()
 {
     userManager.userLoggingIn();
-    userManager.checkIfUserIsLogged();
-    //if (userManager.czyUzytkownikJestZalogowany())
-    //{
-    //    adresatMenedzer = new AdresatMenedzer(NAZWA_PLIKU_Z_ADRESATAMI, userManager.pobierzIdZalogowanegoUzytkownika());
-    //}
+    if (userManager.checkIfUserIsLogged())
+    {
+        financialManager = new FinancialManager(NAME_OF_FILE_WITH_INCOMES, NAME_OF_FILE_WITH_EXPENSES, userManager.getIdOfLoggedUser());
+    }
 }
 
 int FinancialBook::userLoggingOut()
 {
     userManager.userLoggingOut();
-   // delete adresatMenedzer;
-    //adresatMenedzer = NULL;
+    delete financialManager;
+    financialManager = NULL;
 }
 
 void FinancialBook::changePasswordOfLoggedUser()
