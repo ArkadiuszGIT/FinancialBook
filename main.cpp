@@ -46,7 +46,7 @@ int main()
                 financialBook.addIncome();
                 break;
             case '2':
-                //financialBook.addExpense();
+                financialBook.addExpense();
                 break;
             case '3':
                 //financialBook.showBalanceFromTheCurrentMonth();

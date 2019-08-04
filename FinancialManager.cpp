@@ -16,9 +16,21 @@ int FinancialManager::addIncome()
         {
         case '1':
             income = setDataOfTodayIncome();
+            incomes.push_back(income);
+            if (fileWithIncomes.addIncomeToFile(income))
+                cout << "The new income has been added" << endl;
+            else
+                cout << "Error. It was not possible to add a new income to the file." << endl;
+            system("pause");
             break;
         case '2':
             income = setDataOfAnotherDayIncome();
+            incomes.push_back(income);
+            if (fileWithIncomes.addIncomeToFile(income))
+                cout << "The new income has been added" << endl;
+            else
+                cout << "Error. It was not possible to add a new income to the file." << endl;
+            system("pause");
             break;
         case '3':
             return 0;
@@ -28,12 +40,6 @@ int FinancialManager::addIncome()
             break;
         }
     }
-    incomes.push_back(income);
-    if (fileWithIncomes.addIncomeToFile(income))
-        cout << "The new income has been added" << endl;
-    else
-        cout << "Error. It was not possible to add a new income to the file." << endl;
-    system("pause");
     return 0;
 }
 
@@ -95,6 +101,113 @@ Income FinancialManager::setDataOfAnotherDayIncome()
     income.setDescription((description));
 
     return income;
+}
+
+int FinancialManager::addExpense()
+{
+    Expense expense;
+
+    char choice;
+
+    while(1)
+    {
+        system("cls");
+        cout << " >>> ADDING NEW EXPENSE <<<" << endl << endl;
+        choice = chooseOptionFromExpenseMenu();
+
+        switch (choice)
+        {
+        case '1':
+            expense = setDataOfTodayExpense();
+            expenses.push_back(expense);
+            if (fileWithExpenses.addExpenseToFile(expense))
+                cout << "The new expense has been added" << endl;
+            else
+                cout << "Error. It was not possible to add a new expense to the file." << endl;
+            system("pause");
+            break;
+        case '2':
+            expense = setDataOfAnotherDayExpense();
+            expenses.push_back(expense);
+            if (fileWithExpenses.addExpenseToFile(expense))
+                cout << "The new expense has been added" << endl;
+            else
+                cout << "Error. It was not possible to add a new expense to the file." << endl;
+            system("pause");
+            break;
+        case '3':
+            return 0;
+            break;
+        default:
+            cout << endl << "There is no option on the menu!" << endl << endl;
+            break;
+        }
+    }
+    return 0;
+}
+
+Expense FinancialManager::setDataOfTodayExpense()
+{
+    Expense expense;
+
+    string date, amount, description;
+    int dateInt;
+    double amountDouble;
+
+    expense.setUserId(ID_OF_LOGGED_USER);
+    date = SupportMethods::getTodaysDate();
+    dateInt = SupportMethods::conversionDateFromStringToIntWithoutDash(date);
+
+    cout << "Give the amount of expense: ";
+    amount = SupportMethods::loadLine();
+    if(amount[0] != '-')
+        amount = '-' + amount;
+    amountDouble = SupportMethods::conversionFromStringToDouble(amount);
+
+    cout << "Write the description: ";
+    description = SupportMethods::loadLine();
+
+    expense.setStringDate(date);
+    expense.setIntDate(dateInt);
+    expense.setAmount(amountDouble);
+    expense.setDescription((description));
+
+    return expense;
+}
+
+Expense FinancialManager::setDataOfAnotherDayExpense()
+{
+    Expense expense;
+
+    string date, amount, description;
+    int dateInt;
+    double amountDouble;
+
+    expense.setUserId(ID_OF_LOGGED_USER);
+
+    cout << "Give the date in rrrr-mm-dd format: ";
+    date = SupportMethods::loadLine();
+    while(checkIfDateIsCorrect(date) == false)
+    {
+        date = SupportMethods::loadLine();
+    }
+    dateInt = SupportMethods::conversionDateFromStringToIntWithoutDash(date);
+
+    cout << "Give the amount of expense: ";
+    amount = SupportMethods::loadLine();
+    if(amount[0] != '-')
+        amount = '-' + amount;
+    amountDouble = SupportMethods::conversionFromStringToDouble(amount);
+
+    cout << "Write the description: ";
+    description = SupportMethods::loadLine();
+
+    expense.setStringDate(date);
+    expense.setIntDate(dateInt);
+    expense.setAmount(amountDouble);
+    expense.setDescription((description));
+
+    return expense;
 }
 /*
 void FinancialManager::showBalanceFromTheCurrentMonth()
