@@ -57,3 +57,8 @@ bool FinancialBook::checkIfUserIsLoged()
 {
     userManager.checkIfUserIsLogged();
 }
+
+int FinancialBook::addIncome()
+{
+    financialManager -> addIncome();
+}

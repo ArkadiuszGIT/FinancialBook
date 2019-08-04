@@ -7,6 +7,7 @@
 #include "Income.h"
 #include "XmlFile.h"
 #include "Markup.h"
+#include "SupportMethods.h"
 
 using namespace std;
 
@@ -15,9 +16,9 @@ class FileWithIncomes : public XmlFile
 
 public:
     FileWithIncomes(string fileName) : XmlFile(fileName){};
-    void addIncomeToFile(Income income);
+    bool addIncomeToFile(Income income);
     void addAllIncomesToFile(vector <Income> &incomes);
-    vector <Income> loadIncomesFromFile();
+    vector <Income> getIncomesOfLoggedUserFromFile(int ID_OF_LOGGED_USER);
 
 };
 

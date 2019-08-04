@@ -6,7 +6,7 @@ void Finance::setStringDate(string newStringDate)
 {
     stringDate = newStringDate;
 }
-void Finance::setStringDate(int newIntDate)
+void Finance::setIntDate(int newIntDate)
 {
     intDate = newIntDate;
 }

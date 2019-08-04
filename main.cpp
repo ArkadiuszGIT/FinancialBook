@@ -43,7 +43,7 @@ int main()
             switch (choice)
             {
             case '1':
-                //financialBook.addIncome();
+                financialBook.addIncome();
                 break;
             case '2':
                 //financialBook.addExpense();

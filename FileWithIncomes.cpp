@@ -1,6 +1,6 @@
 #include "FileWithIncomes.h"
 
-void FileWithIncomes::addIncomeToFile(Income income)
+bool FileWithIncomes::addIncomeToFile(Income income)
 {
     CMarkup xml;
 
@@ -16,12 +16,13 @@ void FileWithIncomes::addIncomeToFile(Income income)
     xml.IntoElem();
     xml.AddElem( "Income" );
     xml.IntoElem();
-    xml.AddElem( "Date", income.getDate());
+    xml.AddElem( "Date", income.getStringDate());
     xml.AddElem( "UserID", income.getUserId());
     xml.AddElem( "Amount", income.getAmount());
     xml.AddElem( "Description", income.getDescription());
 
     xml.Save( XML_FILE_NAME );
+    return true;
 }
 
 void FileWithIncomes::addAllIncomesToFile(vector <Income> &incomes)
@@ -40,7 +41,7 @@ void FileWithIncomes::addAllIncomesToFile(vector <Income> &incomes)
     {
         xml.AddElem( "Income" );
         xml.IntoElem();
-        xml.AddElem( "Date", itr -> getDate());
+        xml.AddElem( "Date", itr -> getStringDate());
         xml.AddElem( "UserID", itr -> getUserId());
         xml.AddElem( "Amount", itr -> getAmount());
         xml.AddElem( "Description", itr -> getDescription());
@@ -50,7 +51,7 @@ void FileWithIncomes::addAllIncomesToFile(vector <Income> &incomes)
     xml.Save( XML_FILE_NAME );
 }
 
-vector <Income> FileWithIncomes::loadIncomesFromFile()
+vector <Income> FileWithIncomes::getIncomesOfLoggedUserFromFile(int ID_OF_LOGGED_USER)
 {
     Income income;
     vector <Income> incomes;
@@ -64,7 +65,8 @@ vector <Income> FileWithIncomes::loadIncomesFromFile()
     {
         xml.IntoElem();
         xml.FindElem( "Date" );
-        income.setDate(xml.GetData());
+        income.setStringDate(xml.GetData());
+        income.setIntDate(SupportMethods::conversionDateFromStringToIntWithoutDash(income.getStringDate()));
         xml.FindElem( "UserID" );
         income.setUserId(atoi( MCD_2PCSZ(xml.GetData())));
         xml.FindElem( "Amount" );
@@ -72,8 +74,11 @@ vector <Income> FileWithIncomes::loadIncomesFromFile()
         xml.FindElem( "Description" );
         income.setDescription(xml.GetData());
         xml.OutOfElem();
-        incomes.push_back(income);
+
+        if (ID_OF_LOGGED_USER == income.getUserId())
+            incomes.push_back(income);
     }
     return incomes;
 }
+
 
