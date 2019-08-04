@@ -121,6 +121,43 @@ void FinancialManager::showDataOfExpense(Expense expense)
     cout << "Adres:              " << adresat.pobierzAdres() << endl;
 }
 
+bool FinancialManager::checkIfDateIsCorrect(string date)
+{
+    for(int i = 0; i <= date.length()-1; i++)
+    {
+        if((date[i] < 48 || date[i] > 57) && date[i] != '-')
+        {
+            cout << "Wrong date format. Enter the date again!" << endl;
+            return false;
+        }
+    }
+    if( date.length() == 10 && date[4] == '-' && date[7] == '-' )
+    {
+        string year = date.substr(0,4);
+        string month = date.substr(5,2);
+        string day = date.substr(8,2);
+        int yearInt = conversionFromStringToInt(year);
+        int monthInt = conversionFromStringToInt(month);
+        int dayInt = conversionFromStringToInt(day);
+        if (yearInt > 0 && monthInt > 0 && monthInt <= 12 && dayInt > 0 && dayInt <= 31)
+        {
+            cout << "The date entered correctly." << endl;
+            return true;
+        }
+        else
+        {
+            cout << "bad date values. Enter the date again!" << endl;
+            return false;
+        }
+
+    }
+    else
+    {
+        cout << "Wrong date format. Enter the date again!" << endl;
+            return false;
+    }
+}
+
 char FinancialManager::chooseOptionFromIncomeMenu()
 {
     char choice;

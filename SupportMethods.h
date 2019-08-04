@@ -22,6 +22,7 @@ public:
     static string changeFirstLetterToUpperAndNextLettersToLower(string text);
     static int loadInteger();
     string string getTodaysDate();
+    static string conversionDateFromStringToIntWithoutDash(string date);
 };
 
 #endif
