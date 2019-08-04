@@ -43,27 +43,18 @@ Income FinancialManager::setDataOfTodayIncome();
 {
     Income income;
 
-    string imie, nazwisko, numerTelefonu, email, adres;
+    string date, amount, description;
+    double amountDouble;
 
-    adresat.ustawId((plikZAdresatami.pobierzIdOstatniegoAdresata()+1));
-    adresat.ustawIdUzytkownika(ID_ZALOGOWANEGO_UZYTKOWNIKA);
+    income.setUserId(ID_OF_LOGGED_USER);
+    date = SupportMethods::getTodaysDate;
 
-    cout << "Podaj imie: ";
-    imie = MetodyPomocnicze::wczytajLinie();
-    imie = MetodyPomocnicze::zamienPierwszaLitereNaDuzaAPozostaleNaMale(imie);
+    cout << "Give the amount of income: ";
+    amount = SupportMethods::wczytajLinie();
+    amountDouble = SupportMethods::conversionFromStringToDouble(amount);
 
-    cout << "Podaj nazwisko: ";
-    nazwisko = MetodyPomocnicze::wczytajLinie();
-    nazwisko = MetodyPomocnicze::zamienPierwszaLitereNaDuzaAPozostaleNaMale(nazwisko);
-
-    cout << "Podaj numer telefonu: ";
-    numerTelefonu = MetodyPomocnicze::wczytajLinie();
-
-    cout << "Podaj email: ";
-    email = MetodyPomocnicze::wczytajLinie();
-
-    cout << "Podaj adres: ";
-    adres = MetodyPomocnicze::wczytajLinie();
+    cout << "Write the description: ";
+    description = MetodyPomocnicze::wczytajLinie();
 
     adresat.ustawImie(imie);
     adresat.ustawNazwisko(nazwisko);
@@ -128,6 +119,43 @@ void FinancialManager::showDataOfExpense(Expense expense)
     cout << "Numer telefonu:     " << adresat.pobierzNumerTelefonu() << endl;
     cout << "Email:              " << adresat.pobierzEmail() << endl;
     cout << "Adres:              " << adresat.pobierzAdres() << endl;
+}
+
+bool FinancialManager::checkIfDateIsCorrect(string date)
+{
+    for(int i = 0; i <= date.length()-1; i++)
+    {
+        if((date[i] < 48 || date[i] > 57) && date[i] != '-')
+        {
+            cout << "Wrong date format. Enter the date again!" << endl;
+            return false;
+        }
+    }
+    if( date.length() == 10 && date[4] == '-' && date[7] == '-' )
+    {
+        string year = date.substr(0,4);
+        string month = date.substr(5,2);
+        string day = date.substr(8,2);
+        int yearInt = conversionFromStringToInt(year);
+        int monthInt = conversionFromStringToInt(month);
+        int dayInt = conversionFromStringToInt(day);
+        if (yearInt > 0 && monthInt > 0 && monthInt <= 12 && dayInt > 0 && dayInt <= 31)
+        {
+            cout << "The date entered correctly." << endl;
+            return true;
+        }
+        else
+        {
+            cout << "bad date values. Enter the date again!" << endl;
+            return false;
+        }
+
+    }
+    else
+    {
+        cout << "Wrong date format. Enter the date again!" << endl;
+            return false;
+    }
 }
 
 char FinancialManager::chooseOptionFromIncomeMenu()
