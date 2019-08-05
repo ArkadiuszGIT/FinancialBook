@@ -67,3 +67,13 @@ int FinancialBook::addExpense()
 {
     financialManager -> addExpense();
 }
+
+void FinancialBook::showBalanceFromTheCurrentMonth()
+{
+    financialManager -> showBalanceFromTheCurrentMonth();
+}
+
+void FinancialBook::showBalanceFromThePreviousMonth()
+{
+    financialManager -> showBalanceFromThePreviousMonth();
+}

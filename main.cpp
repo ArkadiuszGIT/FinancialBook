@@ -49,10 +49,10 @@ int main()
                 financialBook.addExpense();
                 break;
             case '3':
-                //financialBook.showBalanceFromTheCurrentMonth();
+                financialBook.showBalanceFromTheCurrentMonth();
                 break;
             case '4':
-                //financialBook.showBalanceFromThePreviousMonth();
+                financialBook.showBalanceFromThePreviousMonth();
                 break;
             case '5':
                 //financialBook.showBalanceFromTheSelectedPeriod();

@@ -16,9 +16,9 @@ bool FileWithExpenses::addExpenseToFile(Expense expense)
     xml.IntoElem();
     xml.AddElem( "Expense" );
     xml.IntoElem();
-    xml.AddElem( "Date", expense.getStringDate());
     xml.AddElem( "UserID", expense.getUserId());
-    xml.AddElem( "Amount", expense.getAmount());
+    xml.AddElem( "Date", expense.getStringDate());
+    xml.AddElem( "Amount", SupportMethods::conversionFromDoubleToString(expense.getAmount()));
     xml.AddElem( "Description", expense.getDescription());
 
     xml.Save( XML_FILE_NAME );
@@ -41,8 +41,8 @@ void FileWithExpenses::addAllExpensesToFile(vector <Expense> &expenses)
     {
         xml.AddElem( "Expense" );
         xml.IntoElem();
-        xml.AddElem( "Date", itr -> getStringDate());
         xml.AddElem( "UserID", itr -> getUserId());
+        xml.AddElem( "Date", itr -> getStringDate());
         xml.AddElem( "Amount", itr -> getAmount());
         xml.AddElem( "Description", itr -> getDescription());
         xml.OutOfElem();
@@ -64,13 +64,13 @@ vector <Expense> FileWithExpenses::getExpensesOfLoggedUserFromFile(int ID_OF_LOG
     while ( xml.FindElem("Expense") )
     {
         xml.IntoElem();
+        xml.FindElem( "UserID" );
+        expense.setUserId(atoi( MCD_2PCSZ(xml.GetData())));
         xml.FindElem( "Date" );
         expense.setStringDate(xml.GetData());
         expense.setIntDate(SupportMethods::conversionDateFromStringToIntWithoutDash(expense.getStringDate()));
-        xml.FindElem( "UserID" );
-        expense.setUserId(atoi( MCD_2PCSZ(xml.GetData())));
         xml.FindElem( "Amount" );
-        expense.setAmount(atoi( MCD_2PCSZ(xml.GetData())));
+        expense.setAmount(atof( MCD_2PCSZ(xml.GetData())));
         xml.FindElem( "Description" );
         expense.setDescription(xml.GetData());
         xml.OutOfElem();
