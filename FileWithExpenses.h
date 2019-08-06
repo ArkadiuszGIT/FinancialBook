@@ -7,6 +7,7 @@
 #include "Expense.h"
 #include "XmlFile.h"
 #include "Markup.h"
+#include "SupportMethods.h"
 
 using namespace std;
 
@@ -15,9 +16,9 @@ class FileWithExpenses : public XmlFile
 
 public:
     FileWithExpenses(string fileName) : XmlFile(fileName){};
-    void addExpenseToFile(Expense expense);
+    bool addExpenseToFile(Expense expense);
     void addAllExpensesToFile(vector <Expense> &expenses);
-    vector <Expense> loadExpensesFromFile();
+    vector <Expense> getExpensesOfLoggedUserFromFile(int ID_OF_LOGGED_USER);
 
 };
 

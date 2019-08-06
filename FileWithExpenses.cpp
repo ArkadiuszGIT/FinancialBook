@@ -1,6 +1,6 @@
 #include "FileWithExpenses.h"
 
-void FileWithExpenses::addExpenseToFile(Expense expense)
+bool FileWithExpenses::addExpenseToFile(Expense expense)
 {
     CMarkup xml;
 
@@ -16,12 +16,13 @@ void FileWithExpenses::addExpenseToFile(Expense expense)
     xml.IntoElem();
     xml.AddElem( "Expense" );
     xml.IntoElem();
-    xml.AddElem( "Date", expense.getDate());
     xml.AddElem( "UserID", expense.getUserId());
-    xml.AddElem( "Amount", expense.getAmount());
+    xml.AddElem( "Date", expense.getStringDate());
+    xml.AddElem( "Amount", SupportMethods::conversionFromDoubleToString(expense.getAmount()));
     xml.AddElem( "Description", expense.getDescription());
 
     xml.Save( XML_FILE_NAME );
+    return true;
 }
 
 void FileWithExpenses::addAllExpensesToFile(vector <Expense> &expenses)
@@ -40,8 +41,8 @@ void FileWithExpenses::addAllExpensesToFile(vector <Expense> &expenses)
     {
         xml.AddElem( "Expense" );
         xml.IntoElem();
-        xml.AddElem( "Date", itr -> getDate());
         xml.AddElem( "UserID", itr -> getUserId());
+        xml.AddElem( "Date", itr -> getStringDate());
         xml.AddElem( "Amount", itr -> getAmount());
         xml.AddElem( "Description", itr -> getDescription());
         xml.OutOfElem();
@@ -50,7 +51,7 @@ void FileWithExpenses::addAllExpensesToFile(vector <Expense> &expenses)
     xml.Save( XML_FILE_NAME );
 }
 
-vector <Expense> FileWithExpenses::loadExpensesFromFile()
+vector <Expense> FileWithExpenses::getExpensesOfLoggedUserFromFile(int ID_OF_LOGGED_USER)
 {
     Expense expense;
     vector <Expense> expenses;
@@ -63,16 +64,18 @@ vector <Expense> FileWithExpenses::loadExpensesFromFile()
     while ( xml.FindElem("Expense") )
     {
         xml.IntoElem();
-        xml.FindElem( "Date" );
-        expense.setDate(xml.GetData());
         xml.FindElem( "UserID" );
         expense.setUserId(atoi( MCD_2PCSZ(xml.GetData())));
+        xml.FindElem( "Date" );
+        expense.setStringDate(xml.GetData());
+        expense.setIntDate(SupportMethods::conversionDateFromStringToIntWithoutDash(expense.getStringDate()));
         xml.FindElem( "Amount" );
-        expense.setAmount(atoi( MCD_2PCSZ(xml.GetData())));
+        expense.setAmount(atof( MCD_2PCSZ(xml.GetData())));
         xml.FindElem( "Description" );
         expense.setDescription(xml.GetData());
         xml.OutOfElem();
-        expenses.push_back(expense);
+        if (ID_OF_LOGGED_USER == expense.getUserId())
+            expenses.push_back(expense);
     }
     return expenses;
 }

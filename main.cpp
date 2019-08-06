@@ -43,19 +43,19 @@ int main()
             switch (choice)
             {
             case '1':
-                //financialBook.addIncome();
+                financialBook.addIncome();
                 break;
             case '2':
-                //financialBook.addExpense();
+                financialBook.addExpense();
                 break;
             case '3':
-                //financialBook.showBalanceFromTheCurrentMonth();
+                financialBook.showBalanceFromTheCurrentMonth();
                 break;
             case '4':
-                //financialBook.showBalanceFromThePreviousMonth();
+                financialBook.showBalanceFromThePreviousMonth();
                 break;
             case '5':
-                //financialBook.showBalanceFromTheSelectedPeriod();
+                financialBook.showBalanceFromTheSelectedPeriod();
                 break;
             case '6':
                 financialBook.changePasswordOfLoggedUser();

@@ -4,6 +4,8 @@
 #include <iostream>
 #include <vector>
 #include <windows.h>
+#include <iomanip>.h
+#include <algorithm>
 
 #include "FileWithExpenses.h"
 #include "FileWithIncomes.h"
@@ -22,11 +24,13 @@ class FinancialManager
     FileWithIncomes fileWithIncomes;
 
     Income setDataOfTodayIncome();
-    Expense setDataOfNewExpense();
+    Income setDataOfAnotherDayIncome();
+    Expense setDataOfTodayExpense();
+    Expense setDataOfAnotherDayExpense();
     void showDataOfIncome(Income income);
     void showDataOfExpense(Expense expense);
-    void displayTheNumberOfSearchedIncomes(int numberOfIncomes);
-    void displayTheNumberOfSearchedExpenses(int numberOfExpenses);
+    void displayTheNumberOfSearchedIncomesAndSum(int numberOfIncomes, double incomesSum);
+    void displayTheNumberOfSearchedExpensesAndSumAndTotalSum(int numberOfExpenses, double incomesSum, double expensesSum);
     bool checkIfDateIsCorrect(string date);
     char chooseOptionFromIncomeMenu();
     char chooseOptionFromExpenseMenu();
@@ -38,8 +42,8 @@ public:
         incomes = fileWithIncomes.getIncomesOfLoggedUserFromFile(ID_OF_LOGGED_USER);
         expenses = fileWithExpenses.getExpensesOfLoggedUserFromFile(ID_OF_LOGGED_USER);
     };
-    void addIncome();
-    void addExpense();
+    int addIncome();
+    int addExpense();
     void showBalanceFromTheCurrentMonth();
     void showBalanceFromThePreviousMonth();
     void showBalanceFromTheSelectedPeriod();

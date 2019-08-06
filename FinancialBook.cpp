@@ -57,3 +57,28 @@ bool FinancialBook::checkIfUserIsLoged()
 {
     userManager.checkIfUserIsLogged();
 }
+
+int FinancialBook::addIncome()
+{
+    financialManager -> addIncome();
+}
+
+int FinancialBook::addExpense()
+{
+    financialManager -> addExpense();
+}
+
+void FinancialBook::showBalanceFromTheCurrentMonth()
+{
+    financialManager -> showBalanceFromTheCurrentMonth();
+}
+
+void FinancialBook::showBalanceFromThePreviousMonth()
+{
+    financialManager -> showBalanceFromThePreviousMonth();
+}
+
+void FinancialBook::showBalanceFromTheSelectedPeriod()
+{
+    financialManager -> showBalanceFromTheSelectedPeriod();
+}

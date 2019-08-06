@@ -23,6 +23,10 @@ public:
         this -> amount = amount;
         this -> description = description;
     }
+    bool operator > (const Finance& str) const
+    {
+        return (intDate < str.intDate);
+    }
     void setStringDate(string newStringDate);
     void setIntDate(int newIntDate);
     void setUserId(int newUserId);

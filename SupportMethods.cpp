@@ -121,7 +121,7 @@ string SupportMethods::getTodaysDate()
     return date;
 }
 
-string SupportMethods::conversionDateFromStringToIntWithoutDash(string date)
+int SupportMethods::conversionDateFromStringToIntWithoutDash(string date)
 {
     for(int i = 0; i <= date.length()-1; i++)
     {
