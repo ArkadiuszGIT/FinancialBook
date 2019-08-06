@@ -77,3 +77,8 @@ void FinancialBook::showBalanceFromThePreviousMonth()
 {
     financialManager -> showBalanceFromThePreviousMonth();
 }
+
+void FinancialBook::showBalanceFromTheSelectedPeriod()
+{
+    financialManager -> showBalanceFromTheSelectedPeriod();
+}
