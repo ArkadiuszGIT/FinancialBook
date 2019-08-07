@@ -17,13 +17,10 @@ public:
     static string conversionFromDoubleToString(double number);
     static string conversionFromIntToString(int number);
     static int conversionFromStringToInt(string number);
-    static string getNumber(string text, int charPosition);
+    static int conversionDateFromStringToIntWithoutDash(string date);
     static string loadLine();
     static char loadChar();
-    static string changeFirstLetterToUpperAndNextLettersToLower(string text);
-    static int loadInteger();
     static string getTodaysDate();
-    static int conversionDateFromStringToIntWithoutDash(string date);
 };
 
 #endif

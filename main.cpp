@@ -24,9 +24,6 @@ int main()
             case '2':
                 financialBook.userLoggingIn();
                 break;
-            case '3':
-                financialBook.showAllUsers();
-                break;
             case '9':
                 exit(0);
                 break;
@@ -62,6 +59,10 @@ int main()
                 break;
             case '7':
                 financialBook.userLoggingOut();
+                break;
+            default:
+                cout << endl << "There is no option in the menu." << endl << endl;
+                system("pause");
                 break;
             }
         }

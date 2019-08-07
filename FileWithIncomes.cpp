@@ -25,32 +25,6 @@ bool FileWithIncomes::addIncomeToFile(Income income)
     return true;
 }
 
-void FileWithIncomes::addAllIncomesToFile(vector <Income> &incomes)
-{
-    CMarkup xml;
-
-    xml.Load( XML_FILE_NAME );
-
-    xml.FindElem();
-    xml.IntoElem();
-    while ( xml.FindElem("Income") )
-    {
-        xml.RemoveElem();
-    }
-    for (vector <Income>::iterator itr = incomes.begin(); itr != incomes.end(); itr++)
-    {
-        xml.AddElem( "Income" );
-        xml.IntoElem();
-        xml.AddElem( "UserID", itr -> getUserId());
-        xml.AddElem( "Date", itr -> getStringDate());
-        xml.AddElem( "Amount", itr -> getAmount());
-        xml.AddElem( "Description", itr -> getDescription());
-        xml.OutOfElem();
-    }
-
-    xml.Save( XML_FILE_NAME );
-}
-
 vector <Income> FileWithIncomes::getIncomesOfLoggedUserFromFile(int ID_OF_LOGGED_USER)
 {
     Income income;

@@ -48,11 +48,6 @@ void FinancialBook::changePasswordOfLoggedUser()
     userManager.changePasswordOfLoggedUser();
 }
 
-void FinancialBook::showAllUsers()
-{
-    userManager.showAllUsers();
-}
-
 bool FinancialBook::checkIfUserIsLoged()
 {
     userManager.checkIfUserIsLogged();
