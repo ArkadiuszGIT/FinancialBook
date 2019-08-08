@@ -46,9 +46,9 @@ fontsize=10
     <id>UMLClass</id>
     <coordinates>
       <x>1400</x>
-      <y>170</y>
+      <y>240</y>
       <w>330</w>
-      <h>310</h>
+      <h>240</h>
     </coordinates>
     <panel_attributes>UserManager
 --
@@ -62,8 +62,6 @@ fontsize=10
 +checkIfUserIsLoged():bool
 +userLoggingOut():int 
 +changePasswordOfLoggedUser():void
-+showAllUsers():void
-+loadUsersFromFile():void
 +getIdOfLoggedUser():int
 +chooseOptionFromUserMenu():char
 
@@ -95,9 +93,9 @@ fontsize=10
     <id>UMLClass</id>
     <coordinates>
       <x>1000</x>
-      <y>380</y>
+      <y>400</y>
       <w>320</w>
-      <h>180</h>
+      <h>140</h>
     </coordinates>
     <panel_attributes>SupportMethods
 --
@@ -106,13 +104,10 @@ _+conversionFromDoubleToString():static string_
 _+coversionFromStringToDouble():static double_
 _+conversionFromIntToString():static string_
 _+coversionFromStringToInt():static int_
-_+conversionFromIntToString():static string_
-_+coversionFromStringToInt():static int_
-_+getNumber():static string_
+_+conversionDateFromStringToIntWithoutDash(string date):static int_
 _+loadLine():static string_
 _+loadChar():static char_
-_+changeFirstLetterToUpperAndNextLettersToLower():static string_
-_+loadInteger():static int_
+_+getTodaysDate():static string_
 </panel_attributes>
     <additional_attributes/>
   </element>
@@ -122,7 +117,7 @@ _+loadInteger():static int_
       <x>1000</x>
       <y>0</y>
       <w>320</w>
-      <h>340</h>
+      <h>270</h>
     </coordinates>
     <panel_attributes>FinancialBook
 --
@@ -137,10 +132,14 @@ _+loadInteger():static int_
 +userLoggingIn():int 
 +userLoggingOut():int
 +changePasswordOfLoggedUser():void
-+showAllUsers():void
 +chooseOptionFromMainMenu():char 
 +chooseOptionFromUserMenu():char 
-+checkIfUserIsLoged();bool</panel_attributes>
++checkIfUserIsLoged():bool
++addIncome():int
++addExpense():int
++showBalanceFromTheCurrentMonth():void
++showBalanceFromThePreviousMonth():void
++showBalanceFromTheSelectedPeriod():void</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -160,16 +159,24 @@ _+loadInteger():static int_
 -fileWithExpenses:FileWithExpenses
 --
 +FinancialManager():
-+addIncome();
-+addExpense();
-+showBalanceFromTheCurrentMonth();
-+showBalanceFromThePreviousMonth();
-+showBalanceFromTheSelectedPeriod();
++addIncome():int
++addExpense():int
++showBalanceFromTheCurrentMonth():void
++showBalanceFromThePreviousMonth():void
++showBalanceFromTheSelectedPeriod():void
 
--getToday'sDate();
--calculateHowManyDaysTheCurrentMonthHas();
--checkIfTheYearIsALeapYear();
--ComparisonOfDates();</panel_attributes>
+-setDataOfTodayIncome():Income
+-setDataOfAnotherDayIncome():Income
+-setDataOfTodayExpense():Expense
+-setDataOfAnotherDayExpense():Expense
+-showDataOfIncome():void 
+-showDataOfExpense():void
+-displayTheNumberOfSearchedIncomesAndSum():void
+-displayTheNumberOfSearchedExpensesAndSumAndTotalSum():void
+-checkIfDateIsCorrect():bool
+-calculateTheNumberOfDaysInAMonth():int
+-chooseOptionFromIncomeMenu():char
+-chooseOptionFromExpenseMenu():char</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -184,8 +191,8 @@ _+loadInteger():static int_
 --
 --
 +FileWithExpenses():
-+AddExpenseToFile();
-+loadExpensesOfLogedUserFromFile():vector &lt;Expense&gt;
++AddExpenseToFile():bool
++getExpensesOfLogedUserFromFile():vector &lt;Expense&gt;
 </panel_attributes>
     <additional_attributes/>
   </element>
@@ -199,7 +206,7 @@ _+loadInteger():static int_
     </coordinates>
     <panel_attributes>Income : public Finance
 --
-
+--
 </panel_attributes>
     <additional_attributes/>
   </element>
@@ -209,15 +216,13 @@ _+loadInteger():static int_
       <x>1010</x>
       <y>760</y>
       <w>320</w>
-      <h>100</h>
+      <h>70</h>
     </coordinates>
     <panel_attributes>XmlFile
 --
 #XML_FILE_NAME:const string
 --
-+TextFile():
-
-#checkIfFileIsEmpty():bool
++XmlFile():
 </panel_attributes>
     <additional_attributes/>
   </element>
@@ -225,7 +230,7 @@ _+loadInteger():static int_
     <id>Relation</id>
     <coordinates>
       <x>1310</x>
-      <y>250</y>
+      <y>240</y>
       <w>110</w>
       <h>30</h>
     </coordinates>
@@ -261,7 +266,7 @@ m2=1</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>830</x>
-      <y>380</y>
+      <y>390</y>
       <w>190</w>
       <h>40</h>
     </coordinates>
@@ -273,19 +278,19 @@ m2=1</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>1150</x>
-      <y>330</y>
+      <y>260</y>
       <w>30</w>
-      <h>70</h>
+      <h>160</h>
     </coordinates>
     <panel_attributes>lt=-&gt;
 </panel_attributes>
-    <additional_attributes>10.0;50.0;10.0;10.0</additional_attributes>
+    <additional_attributes>10.0;140.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
       <x>1310</x>
-      <y>520</y>
+      <y>510</y>
       <w>110</w>
       <h>40</h>
     </coordinates>
@@ -340,7 +345,7 @@ m2=0...n</panel_attributes>
 --
 --
 +FileWithIncomes():
-+AddIncomeToFile();
++AddIncomeToFile():bool
 +loadIncomesOfLogedUserFromFile():vector &lt;Income&gt;
 </panel_attributes>
     <additional_attributes/>
@@ -415,7 +420,7 @@ m2=0...n</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>900</x>
-      <y>510</y>
+      <y>520</y>
       <w>120</w>
       <h>30</h>
     </coordinates>
@@ -426,13 +431,13 @@ m2=0...n</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>900</x>
-      <y>510</y>
+      <y>520</y>
       <w>30</w>
-      <h>110</h>
+      <h>100</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 </panel_attributes>
-    <additional_attributes>10.0;90.0;10.0;10.0</additional_attributes>
+    <additional_attributes>10.0;80.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
@@ -444,6 +449,7 @@ m2=0...n</panel_attributes>
     </coordinates>
     <panel_attributes>Expense : public Finance
 --
+--
 
 </panel_attributes>
     <additional_attributes/>
@@ -452,17 +458,20 @@ m2=0...n</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>0</x>
-      <y>250</y>
+      <y>290</y>
       <w>150</w>
-      <h>180</h>
+      <h>110</h>
     </coordinates>
     <panel_attributes>Finance
 --
-stringDate:string
-intDate:int
-userId:int 
-amount:double
-description:string
+#stringDate:string
+#intDate:int
+#userId:int 
+#amount:double
+#description:string
+--
++Finance():
+
 
 </panel_attributes>
     <additional_attributes/>
@@ -605,5 +614,81 @@ m2=0...n</panel_attributes>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-
 m2=0...n</panel_attributes>
     <additional_attributes>150.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1150</x>
+      <y>650</y>
+      <w>100</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>Markup
+--
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1240</x>
+      <y>640</y>
+      <w>180</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+</panel_attributes>
+    <additional_attributes>10.0;20.0;160.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1000</x>
+      <y>640</y>
+      <w>170</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+</panel_attributes>
+    <additional_attributes>150.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1160</x>
+      <y>670</y>
+      <w>30</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>lt=-
+
+</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;60.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>590</x>
+      <y>710</y>
+      <w>600</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=-
+
+</panel_attributes>
+    <additional_attributes>580.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>590</x>
+      <y>700</y>
+      <w>30</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+</panel_attributes>
+    <additional_attributes>10.0;30.0;10.0;10.0</additional_attributes>
   </element>
 </diagram>

@@ -55,11 +55,11 @@ Income FinancialManager::setDataOfTodayIncome()
     date = SupportMethods::getTodaysDate();
     dateInt = SupportMethods::conversionDateFromStringToIntWithoutDash(date);
 
-    cout << "Give the amount of income: ";
+    cout << "Enter the amount of income: ";
     amount = SupportMethods::loadLine();
     amountDouble = SupportMethods::conversionFromStringToDouble(amount);
 
-    cout << "Write the description: ";
+    cout << "Enter the description: ";
     description = SupportMethods::loadLine();
 
     income.setStringDate(date);
@@ -80,7 +80,7 @@ Income FinancialManager::setDataOfAnotherDayIncome()
 
     income.setUserId(ID_OF_LOGGED_USER);
 
-    cout << "Give the date in rrrr-mm-dd format: ";
+    cout << "Enter the date in rrrr-mm-dd format: ";
 
     do
     {
@@ -88,7 +88,7 @@ Income FinancialManager::setDataOfAnotherDayIncome()
     } while(checkIfDateIsCorrect(date) == false);
     dateInt = SupportMethods::conversionDateFromStringToIntWithoutDash(date);
 
-    cout << "Give the amount of income: ";
+    cout << "Enter the amount of income: ";
     amount = SupportMethods::loadLine();
     amountDouble = SupportMethods::conversionFromStringToDouble(amount);
 
@@ -158,13 +158,13 @@ Expense FinancialManager::setDataOfTodayExpense()
     date = SupportMethods::getTodaysDate();
     dateInt = SupportMethods::conversionDateFromStringToIntWithoutDash(date);
 
-    cout << "Give the amount of expense: ";
+    cout << "Enter the amount of expense: ";
     amount = SupportMethods::loadLine();
     if(amount[0] != '-')
         amount = '-' + amount;
     amountDouble = SupportMethods::conversionFromStringToDouble(amount);
 
-    cout << "Write the description: ";
+    cout << "Enter the description: ";
     description = SupportMethods::loadLine();
 
     expense.setStringDate(date);
@@ -185,14 +185,14 @@ Expense FinancialManager::setDataOfAnotherDayExpense()
 
     expense.setUserId(ID_OF_LOGGED_USER);
 
-    cout << "Give the date in rrrr-mm-dd format: ";
+    cout << "Enter the date in rrrr-mm-dd format: ";
     do
     {
         date = SupportMethods::loadLine();
     } while(checkIfDateIsCorrect(date) == false);
     dateInt = SupportMethods::conversionDateFromStringToIntWithoutDash(date);
 
-    cout << "Give the amount of expense: ";
+    cout << "Enter the amount of expense: ";
     amount = SupportMethods::loadLine();
     if(amount[0] != '-')
         amount = '-' + amount;
@@ -349,14 +349,14 @@ void FinancialManager::showBalanceFromTheSelectedPeriod()
     double incomesSum = 0;
     double expensesSum = 0;
 
-    cout << "Give first day in rrrr-mm-dd format: ";
+    cout << "Enter first day in rrrr-mm-dd format: ";
     do
     {
         firstDay = SupportMethods::loadLine();
     } while(checkIfDateIsCorrect(firstDay) == false);
     firstDayInt = SupportMethods::conversionDateFromStringToIntWithoutDash(firstDay);
 
-    cout << "Give last day in rrrr-mm-dd format: ";
+    cout << "Enter last day in rrrr-mm-dd format: ";
     do
     {
         lastDay = SupportMethods::loadLine();
@@ -474,6 +474,11 @@ bool FinancialManager::checkIfDateIsCorrect(string date)
         if (dateInt > todaysDateInt)
         {
             cout << "You cannot enter a date later than today!" << endl;
+            return false;
+        }
+        if (dateInt < 20000101)
+        {
+            cout << "Please enter a date later than or equal to 2000-01-01!" << endl;
             return false;
         }
         if (yearInt > 0 && monthInt > 0 && monthInt <= 12 && dayInt > 0 && dayInt <= calculateTheNumberOfDaysInAMonth(monthInt, yearInt))
