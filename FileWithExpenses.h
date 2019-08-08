@@ -17,9 +17,7 @@ class FileWithExpenses : public XmlFile
 public:
     FileWithExpenses(string fileName) : XmlFile(fileName){};
     bool addExpenseToFile(Expense expense);
-    void addAllExpensesToFile(vector <Expense> &expenses);
     vector <Expense> getExpensesOfLoggedUserFromFile(int ID_OF_LOGGED_USER);
-
 };
 
 #endif
