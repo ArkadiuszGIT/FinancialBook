@@ -16,6 +16,7 @@ bool FileWithExpenses::addExpenseToFile(Expense expense)
     xml.IntoElem();
     xml.AddElem( "Expense" );
     xml.IntoElem();
+    xml.AddElem( "ExpenseID", expense.getId());
     xml.AddElem( "UserID", expense.getUserId());
     xml.AddElem( "Date", expense.getStringDate());
     xml.AddElem( "Amount", SupportMethods::conversionFromDoubleToString(expense.getAmount()));
@@ -38,6 +39,8 @@ vector <Expense> FileWithExpenses::getExpensesOfLoggedUserFromFile(int ID_OF_LOG
     while ( xml.FindElem("Expense") )
     {
         xml.IntoElem();
+        xml.FindElem( "ExpenseID" );
+        expense.setId(atoi( MCD_2PCSZ(xml.GetData())));
         xml.FindElem( "UserID" );
         expense.setUserId(atoi( MCD_2PCSZ(xml.GetData())));
         xml.FindElem( "Date" );
@@ -52,4 +55,30 @@ vector <Expense> FileWithExpenses::getExpensesOfLoggedUserFromFile(int ID_OF_LOG
             expenses.push_back(expense);
     }
     return expenses;
+}
+
+int FileWithExpenses::getIdOfLastExpenseFromFile()
+{
+    Expense expense;
+    CMarkup xml;
+    int idOfLastExpense;
+
+    bool fileExists = xml.Load( XML_FILE_NAME );
+
+    if (fileExists)
+    {
+        xml.FindElem();
+        xml.IntoElem();
+        while ( xml.FindElem("Expense") )
+        {
+            xml.IntoElem();
+            xml.FindElem( "ExpenseID" );
+            idOfLastExpense = atoi( MCD_2PCSZ(xml.GetData()));
+            xml.OutOfElem();
+        }
+    }
+    else
+        idOfLastExpense = 0;
+
+    return idOfLastExpense;
 }

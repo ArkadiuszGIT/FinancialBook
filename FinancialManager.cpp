@@ -52,6 +52,8 @@ Income FinancialManager::setDataOfTodayIncome()
     double amountDouble;
 
     income.setUserId(ID_OF_LOGGED_USER);
+    income.setId(fileWithIncomes.getIdOfLastIncomeFromFile() + 1);
+
     date = SupportMethods::getTodaysDate();
     dateInt = SupportMethods::conversionDateFromStringToIntWithoutDash(date);
 
@@ -79,6 +81,7 @@ Income FinancialManager::setDataOfAnotherDayIncome()
     double amountDouble;
 
     income.setUserId(ID_OF_LOGGED_USER);
+    income.setId(fileWithIncomes.getIdOfLastIncomeFromFile() + 1);
 
     cout << "Enter the date in rrrr-mm-dd format: ";
 
@@ -155,6 +158,8 @@ Expense FinancialManager::setDataOfTodayExpense()
     double amountDouble;
 
     expense.setUserId(ID_OF_LOGGED_USER);
+    expense.setId(fileWithExpenses.getIdOfLastExpenseFromFile() + 1);
+
     date = SupportMethods::getTodaysDate();
     dateInt = SupportMethods::conversionDateFromStringToIntWithoutDash(date);
 
@@ -184,6 +189,7 @@ Expense FinancialManager::setDataOfAnotherDayExpense()
     double amountDouble;
 
     expense.setUserId(ID_OF_LOGGED_USER);
+    expense.setId(fileWithExpenses.getIdOfLastExpenseFromFile() + 1);
 
     cout << "Enter the date in rrrr-mm-dd format: ";
     do
@@ -437,14 +443,16 @@ void FinancialManager::displayTheNumberOfSearchedExpensesAndSumAndTotalSum(int n
 
 void FinancialManager::showDataOfIncome(Income income)
 {
-    cout << endl << "Date:                 " << income.getStringDate() << endl;
+    cout << endl << "IncomeID:                 " << income.getId() << endl;
+    cout << "Date:                 " << income.getStringDate() << endl;
     cout << "Amount:               " << setprecision(15) << income.getAmount() << endl;
     cout << "Description:          " << income.getDescription() << endl;
 }
 
 void FinancialManager::showDataOfExpense(Expense expense)
 {
-    cout << endl << "Date:                 " << expense.getStringDate() << endl;
+    cout << endl << "ExpenseID:                 " << expense.getId() << endl;
+    cout << "Date:                 " << expense.getStringDate() << endl;
     cout << "Amount:               " << setprecision(15) << expense.getAmount() << endl;
     cout << "Description:          " << expense.getDescription() << endl;
 }

@@ -193,6 +193,7 @@ _+getTodaysDate():static string_
 +FileWithExpenses():
 +AddExpenseToFile():bool
 +getExpensesOfLogedUserFromFile():vector &lt;Expense&gt;
++getIdOfLastExpenseFromFile():int
 </panel_attributes>
     <additional_attributes/>
   </element>
@@ -347,6 +348,7 @@ m2=0...n</panel_attributes>
 +FileWithIncomes():
 +AddIncomeToFile():bool
 +loadIncomesOfLogedUserFromFile():vector &lt;Income&gt;
++getIdOfLastIncomeFromFile():int
 </panel_attributes>
     <additional_attributes/>
   </element>
@@ -460,13 +462,14 @@ m2=0...n</panel_attributes>
       <x>0</x>
       <y>290</y>
       <w>150</w>
-      <h>110</h>
+      <h>120</h>
     </coordinates>
     <panel_attributes>Finance
 --
 #stringDate:string
 #intDate:int
 #userId:int 
+#id:int 
 #amount:double
 #description:string
 --
