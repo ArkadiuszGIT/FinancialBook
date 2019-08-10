@@ -18,6 +18,10 @@ int SupportMethods::conversionFromStringToInt(string number)
 
 double SupportMethods::conversionFromStringToDouble(string number)
 {
+    if(number.length() == 0)
+    {
+        number = "0";
+    }
     for(int i = 0; i <= number.length()-1; i++)
     {
         if(number[i] == ',')
@@ -51,8 +55,6 @@ int SupportMethods::conversionDateFromStringToIntWithoutDash(string date)
     int dateInt = conversionFromStringToInt(date);
     return dateInt;
 }
-
-
 string SupportMethods::loadLine()
 {
     string input = "";
@@ -79,19 +81,4 @@ char SupportMethods::loadChar()
     return character;
 }
 
-string SupportMethods::getTodaysDate()
-{
-    string date;
-    SYSTEMTIME st;
-    GetSystemTime(&st);
-    string year = conversionFromIntToString(st.wYear);
-    string month = conversionFromIntToString(st.wMonth);
-    if (month.length() == 1)
-        month = '0' + month;
-    string day = conversionFromIntToString(st.wDay);
-    if (day.length() == 1)
-        day = '0' + day;
-    date = year + '-' + month + '-' + day ;
-    return date;
-}
 

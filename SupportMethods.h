@@ -4,8 +4,6 @@
 #include <iostream>
 #include <windows.h>
 #include <sstream>
-#include <algorithm>
-#include <ctime>
 
 using namespace std;
 
@@ -20,7 +18,6 @@ public:
     static int conversionDateFromStringToIntWithoutDash(string date);
     static string loadLine();
     static char loadChar();
-    static string getTodaysDate();
 };
 
 #endif

@@ -107,7 +107,6 @@ _+coversionFromStringToInt():static int_
 _+conversionDateFromStringToIntWithoutDash(string date):static int_
 _+loadLine():static string_
 _+loadChar():static char_
-_+getTodaysDate():static string_
 </panel_attributes>
     <additional_attributes/>
   </element>
@@ -146,9 +145,9 @@ _+getTodaysDate():static string_
     <id>UMLClass</id>
     <coordinates>
       <x>520</x>
-      <y>80</y>
+      <y>100</y>
       <w>320</w>
-      <h>340</h>
+      <h>320</h>
     </coordinates>
     <panel_attributes>FinancialManager
 --
@@ -157,6 +156,7 @@ _+getTodaysDate():static string_
 -expenses:vector &lt;Expense&gt;
 -fileWithIncomes:FileWithIncomes
 -fileWithExpenses:FileWithExpenses
+-dateSupporter:DateSupporter
 --
 +FinancialManager():
 +addIncome():int
@@ -173,8 +173,6 @@ _+getTodaysDate():static string_
 -showDataOfExpense():void
 -displayTheNumberOfSearchedIncomesAndSum():void
 -displayTheNumberOfSearchedExpensesAndSumAndTotalSum():void
--checkIfDateIsCorrect():bool
--calculateTheNumberOfDaysInAMonth():int
 -chooseOptionFromIncomeMenu():char
 -chooseOptionFromExpenseMenu():char</panel_attributes>
     <additional_attributes/>
@@ -693,5 +691,46 @@ m2=0...n</panel_attributes>
     <panel_attributes>lt=-&gt;
 </panel_attributes>
     <additional_attributes>10.0;30.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>950</x>
+      <y>290</y>
+      <w>200</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>DateSupporter
+-
+-
++checkIfDateIsCorrect():bool
++getTodaysDate():static string
+
+-calculateTheNumberOfDaysInAMonth():int</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>830</x>
+      <y>330</y>
+      <w>140</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m2=1</panel_attributes>
+    <additional_attributes>10.0;10.0;120.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1100</x>
+      <y>360</y>
+      <w>30</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+</panel_attributes>
+    <additional_attributes>10.0;40.0;10.0;10.0</additional_attributes>
   </element>
 </diagram>

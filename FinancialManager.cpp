@@ -54,7 +54,7 @@ Income FinancialManager::setDataOfTodayIncome()
     income.setUserId(ID_OF_LOGGED_USER);
     income.setId(fileWithIncomes.getIdOfLastIncomeFromFile() + 1);
 
-    date = SupportMethods::getTodaysDate();
+    date = dateSupporter.getTodaysDate();
     dateInt = SupportMethods::conversionDateFromStringToIntWithoutDash(date);
 
     cout << "Enter the amount of income: ";
@@ -88,7 +88,7 @@ Income FinancialManager::setDataOfAnotherDayIncome()
     do
     {
         date = SupportMethods::loadLine();
-    } while(checkIfDateIsCorrect(date) == false);
+    } while(dateSupporter.checkIfDateIsCorrect(date) == false);
     dateInt = SupportMethods::conversionDateFromStringToIntWithoutDash(date);
 
     cout << "Enter the amount of income: ";
@@ -160,7 +160,7 @@ Expense FinancialManager::setDataOfTodayExpense()
     expense.setUserId(ID_OF_LOGGED_USER);
     expense.setId(fileWithExpenses.getIdOfLastExpenseFromFile() + 1);
 
-    date = SupportMethods::getTodaysDate();
+    date = dateSupporter.getTodaysDate();
     dateInt = SupportMethods::conversionDateFromStringToIntWithoutDash(date);
 
     cout << "Enter the amount of expense: ";
@@ -195,7 +195,7 @@ Expense FinancialManager::setDataOfAnotherDayExpense()
     do
     {
         date = SupportMethods::loadLine();
-    } while(checkIfDateIsCorrect(date) == false);
+    } while(dateSupporter.checkIfDateIsCorrect(date) == false);
     dateInt = SupportMethods::conversionDateFromStringToIntWithoutDash(date);
 
     cout << "Enter the amount of expense: ";
@@ -219,7 +219,7 @@ void FinancialManager::showBalanceFromTheCurrentMonth()
 {
     int numberOfIncomes = 0;
     int numberOfExpenses = 0;
-    string date = SupportMethods::getTodaysDate();
+    string date = dateSupporter.getTodaysDate();
     string year = date.substr(0,4);
     string month = date.substr(5,2);
     double incomesSum = 0;
@@ -283,7 +283,7 @@ void FinancialManager::showBalanceFromThePreviousMonth()
 {
     int numberOfIncomes = 0;
     int numberOfExpenses = 0;
-    string date = SupportMethods::getTodaysDate();
+    string date = dateSupporter.getTodaysDate();
     string year = date.substr(0,4);
     string month = date.substr(5,2);
     int monthInt = SupportMethods::conversionFromStringToInt(month) - 1;
@@ -359,14 +359,14 @@ void FinancialManager::showBalanceFromTheSelectedPeriod()
     do
     {
         firstDay = SupportMethods::loadLine();
-    } while(checkIfDateIsCorrect(firstDay) == false);
+    } while(dateSupporter.checkIfDateIsCorrect(firstDay) == false);
     firstDayInt = SupportMethods::conversionDateFromStringToIntWithoutDash(firstDay);
 
     cout << "Enter last day in rrrr-mm-dd format: ";
     do
     {
         lastDay = SupportMethods::loadLine();
-    } while(checkIfDateIsCorrect(lastDay) == false);
+    } while(dateSupporter.checkIfDateIsCorrect(lastDay) == false);
     lastDayInt = SupportMethods::conversionDateFromStringToIntWithoutDash(lastDay);
 
     system("cls");
@@ -456,91 +456,6 @@ void FinancialManager::showDataOfExpense(Expense expense)
     cout << "Amount:               " << setprecision(15) << expense.getAmount() << endl;
     cout << "Description:          " << expense.getDescription() << endl;
 }
-
-bool FinancialManager::checkIfDateIsCorrect(string date)
-{
-    for(int i = 0; i <= date.length()-1; i++)
-    {
-        if((date[i] < 48 || date[i] > 57) && date[i] != '-')
-        {
-            cout << "Wrong date format. Enter the date again!" << endl;
-            return false;
-        }
-    }
-    if( date.length() == 10 && date[4] == '-' && date[7] == '-' )
-    {
-
-        string year = date.substr(0,4);
-        string month = date.substr(5,2);
-        string day = date.substr(8,2);
-        string todaysDate = SupportMethods::getTodaysDate();
-        int todaysDateInt = SupportMethods::conversionDateFromStringToIntWithoutDash(todaysDate);
-        int dateInt = SupportMethods::conversionDateFromStringToIntWithoutDash(date);
-        int yearInt = SupportMethods::conversionFromStringToInt(year);
-        int monthInt = SupportMethods::conversionFromStringToInt(month);
-        int dayInt = SupportMethods::conversionFromStringToInt(day);
-        if (dateInt > todaysDateInt)
-        {
-            cout << "You cannot enter a date later than today!" << endl;
-            return false;
-        }
-        if (dateInt < 20000101)
-        {
-            cout << "Please enter a date later than or equal to 2000-01-01!" << endl;
-            return false;
-        }
-        if (yearInt > 0 && monthInt > 0 && monthInt <= 12 && dayInt > 0 && dayInt <= calculateTheNumberOfDaysInAMonth(monthInt, yearInt))
-        {
-            cout << "The date entered correctly." << endl;
-            return true;
-        }
-        else
-        {
-            cout << "bad date values. Enter the date again!" << endl;
-            return false;
-        }
-
-    }
-    else
-    {
-        cout << "Wrong date format. Enter the date again!" << endl;
-            return false;
-    }
-}
-
-int FinancialManager::calculateTheNumberOfDaysInAMonth(int month, int year)
-{
-    switch(month)
-    {
-    case 1:
-    case 3:
-    case 5:
-    case 7:
-    case 8:
-    case 10:
-    case 12:
-        return 31;
-        break;
-
-    case 4:
-    case 6:
-    case 9:
-    case 11:
-        return 30;
-        break;
-
-    case 2:
-    {
-        if (((year%4 == 0) && (year%100 != 0)) || (year%400 == 0))
-            return 29;
-        else
-            return 28;
-    }
-    break;
-    }
-    return 0;
-}
-
 
 char FinancialManager::chooseOptionFromIncomeMenu()
 {

@@ -16,7 +16,7 @@ protected:
     string description;
 
 public:
-    Finance(string date = "", int intDate = 0, int userId = 0, int id = 0, double amount = 0, string description = "")
+    Finance(string stringDate = "", int intDate = 0, int userId = 0, int id = 0, double amount = 0, string description = "")
     {
         this -> stringDate = stringDate;
         this -> intDate = intDate;
