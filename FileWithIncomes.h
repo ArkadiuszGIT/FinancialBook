@@ -18,6 +18,7 @@ public:
     FileWithIncomes(string fileName) : XmlFile(fileName){};
     bool addIncomeToFile(Income income);
     vector <Income> getIncomesOfLoggedUserFromFile(int ID_OF_LOGGED_USER);
+    int getIdOfLastIncomeFromFile();
 };
 
 #endif

@@ -4,7 +4,7 @@
 #include <iostream>
 #include <vector>
 #include <windows.h>
-#include <iomanip>.h
+#include <iomanip>
 #include <algorithm>
 
 #include "FileWithExpenses.h"
@@ -12,6 +12,7 @@
 #include "Income.h"
 #include "Expense.h"
 #include "SupportMethods.h"
+#include "DateSupporter.h"
 
 using namespace std;
 
@@ -22,6 +23,7 @@ class FinancialManager
     vector <Expense> expenses;
     FileWithExpenses fileWithExpenses;
     FileWithIncomes fileWithIncomes;
+    DateSupporter dateSupporter;
 
     Income setDataOfTodayIncome();
     Income setDataOfAnotherDayIncome();
@@ -31,8 +33,6 @@ class FinancialManager
     void showDataOfExpense(Expense expense);
     void displayTheNumberOfSearchedIncomesAndSum(int numberOfIncomes, double incomesSum);
     void displayTheNumberOfSearchedExpensesAndSumAndTotalSum(int numberOfExpenses, double incomesSum, double expensesSum);
-    bool checkIfDateIsCorrect(string date);
-    int calculateTheNumberOfDaysInAMonth(int month, int year);
     char chooseOptionFromIncomeMenu();
     char chooseOptionFromExpenseMenu();
 

@@ -15,6 +15,11 @@ void Finance::setUserId(int newUserId)
     if (newUserId >= 0)
         userId = newUserId;
 }
+void Finance::setId(int newId)
+{
+    if (newId >= 0)
+        id = newId;
+}
 void Finance::setAmount(double newAmount)
 {
     amount = newAmount;
@@ -35,6 +40,10 @@ int Finance::getIntDate()
 int Finance::getUserId()
 {
     return userId;
+}
+int Finance::getId()
+{
+    return id;
 }
 double Finance::getAmount()
 {

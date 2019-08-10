@@ -16,6 +16,7 @@ bool FileWithIncomes::addIncomeToFile(Income income)
     xml.IntoElem();
     xml.AddElem( "Income" );
     xml.IntoElem();
+    xml.AddElem( "IncomeID", income.getId());
     xml.AddElem( "UserID", income.getUserId());
     xml.AddElem( "Date", income.getStringDate());
     xml.AddElem( "Amount", SupportMethods::conversionFromDoubleToString(income.getAmount()));
@@ -38,6 +39,8 @@ vector <Income> FileWithIncomes::getIncomesOfLoggedUserFromFile(int ID_OF_LOGGED
     while ( xml.FindElem("Income") )
     {
         xml.IntoElem();
+        xml.FindElem( "IncomeID" );
+        income.setId(atoi( MCD_2PCSZ(xml.GetData())));
         xml.FindElem( "UserID" );
         income.setUserId(atoi( MCD_2PCSZ(xml.GetData())));
         xml.FindElem( "Date" );
@@ -53,6 +56,32 @@ vector <Income> FileWithIncomes::getIncomesOfLoggedUserFromFile(int ID_OF_LOGGED
             incomes.push_back(income);
     }
     return incomes;
+}
+
+int FileWithIncomes::getIdOfLastIncomeFromFile()
+{
+    Income income;
+    CMarkup xml;
+    int idOfLastIncome;
+
+    bool fileExists = xml.Load( XML_FILE_NAME );
+
+    if (fileExists)
+    {
+        xml.FindElem();
+        xml.IntoElem();
+        while ( xml.FindElem("Income") )
+        {
+            xml.IntoElem();
+            xml.FindElem( "IncomeID" );
+            idOfLastIncome = atoi( MCD_2PCSZ(xml.GetData()));
+            xml.OutOfElem();
+        }
+    }
+    else
+        idOfLastIncome = 0;
+
+    return idOfLastIncome;
 }
 
 
